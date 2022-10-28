@@ -7,11 +7,18 @@ import ItemRepo from '../components/ItemRepo';
 import { api } from '../services/api';
 
 import { Container } from './styles';
+import { useEffect } from 'react';
 
 function App() {
 
   const [currentRepo, setCurrentRepo] = useState('');
   const [repos, setRepos] = useState([]);
+
+  console.log(repos);
+
+  useEffect(() => {
+    console.log('render');
+  }, [repos])
 
 
   const handleSearchRepo = async () => {
@@ -37,6 +44,8 @@ function App() {
     console.log('Removendo registro', id);
 
     // utilizar filter.
+    const filteredRepos = repos.filter((element) => element.id !== id);
+    setRepos(filteredRepos);
   }
 
 
